@@ -625,4 +625,61 @@ Home.swift
 
 ## Issue
 We don't want to resize the view...
+
 <img width="300" alt="スクリーンショット_2023_04_03_11_42" src="https://user-images.githubusercontent.com/47273077/229399490-25fa960b-aea1-4c98-9e40-b71cf9437759.png">
+
+### Solution
+<img width="300" alt="スクリーンショット_2023_04_03_11_42" src="https://user-images.githubusercontent.com/47273077/229401288-5ef3fbfe-dd16-423c-8c5d-62d5d6e22cf1.gif">
+
+```swift
+struct Home: View {
+    /// View Properties
+    @State private var activeIntro: PageIntro = pageIntros[0]
+    @State private var emailID: String = ""
+    @State private var password: String = ""
+    @State private var keyboardHeitght: CGFloat = 0
+    var body: some View {
+        GeometryReader {
+            let size = $0.size
+            
+            IntroView(intro: $activeIntro, size: size) {
+                /// User Login/Signup View
+                VStack(spacing: 10) {
+                    /// Custom TextField
+                    CustomTextField(text: $emailID, hint: "Email Address", leadingIcon: Image(systemName: "envelope"))
+                    CustomTextField(text: $password, hint: "Password", leadingIcon: Image(systemName: "lock"), isPassword: true)
+                    
+                    Spacer(minLength: 10)
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Continus")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 15)
+                            .frame(maxWidth: .infinity)
+                            .background {
+                                Capsule()
+                                    .fill(.black)
+                            }
+                    }
+                }
+            }
+        }
+        .padding(15)
+        /// Manual Keyboard Push
+        .offset(y: -keyboardHeitght)
+        /// Disabling Native Keyboard Push
+        .ignoresSafeArea(.keyboard, edges: .all)
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { output in
+            if let info = output.userInfo, let height = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+                keyboardHeitght = height
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidHideNotification)) { _ in
+            keyboardHeitght = 0
+        }
+        .animation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0), value: keyboardHeitght)
+    }
+```
