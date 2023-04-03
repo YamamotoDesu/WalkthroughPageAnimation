@@ -12,6 +12,7 @@ struct Home: View {
     @State private var activeIntro: PageIntro = pageIntros[0]
     @State private var emailID: String = ""
     @State private var password: String = ""
+    @State private var keyboardHeitght: CGFloat = 0
     var body: some View {
         GeometryReader {
             let size = $0.size
@@ -21,7 +22,7 @@ struct Home: View {
                 VStack(spacing: 10) {
                     /// Custom TextField
                     CustomTextField(text: $emailID, hint: "Email Address", leadingIcon: Image(systemName: "envelope"))
-                    CustomTextField(text: $emailID, hint: "Password", leadingIcon: Image(systemName: "lock"), isPassword: true)
+                    CustomTextField(text: $password, hint: "Password", leadingIcon: Image(systemName: "lock"), isPassword: true)
                     
                     Spacer(minLength: 10)
                     
@@ -42,6 +43,19 @@ struct Home: View {
             }
         }
         .padding(15)
+        /// Manual Keyboard Push
+        .offset(y: -keyboardHeitght)
+        /// Disabling Native Keyboard Push
+        .ignoresSafeArea(.keyboard, edges: .all)
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { output in
+            if let info = output.userInfo, let height = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+                keyboardHeitght = height
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidHideNotification)) { _ in
+            keyboardHeitght = 0
+        }
+        .animation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0), value: keyboardHeitght)
     }
 }
 
