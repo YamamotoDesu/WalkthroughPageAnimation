@@ -21,6 +21,23 @@ struct Home: View {
                 VStack(spacing: 10) {
                     /// Custom TextField
                     CustomTextField(text: $emailID, hint: "Email Address", leadingIcon: Image(systemName: "envelope"))
+                    CustomTextField(text: $emailID, hint: "Password", leadingIcon: Image(systemName: "lock"), isPassword: true)
+                    
+                    Spacer(minLength: 10)
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Continus")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 15)
+                            .frame(maxWidth: .infinity)
+                            .background {
+                                Capsule()
+                                    .fill(.black)
+                            }
+                    }
                 }
             }
         }
