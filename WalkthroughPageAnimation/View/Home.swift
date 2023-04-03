@@ -65,6 +65,7 @@ struct IntroView<ActionView: View>: View {
     
     /// Animation Properties
     @State private var showView: Bool = false
+    @State private var hideWholeView: Bool = false
     var body: some View {
         VStack {
             /// Image View
@@ -127,6 +128,8 @@ struct IntroView<ActionView: View>: View {
             .offset(y: showView ? 0 : size.height / 2)
             .opacity(showView ? 1 : 0)
         }
+        .offset(y: hideWholeView ? size.height / 2 : 0)
+        .opacity(hideWholeView ? 0 : 1)
         /// Back Button
         .overlay(alignment: .topLeading) {
             /// Hiding it for Very First Page, Since there is no previous page present
@@ -152,10 +155,23 @@ struct IntroView<ActionView: View>: View {
     
     /// Updating Page Intro's
     func changeIntro(_ isPrevious: Bool = false) {
-        if let index = pageIntros.firstIndex(of: intro), (isPrevious ? index != 0 : index != pageIntros.count - 1) {
-            intro = isPrevious ? pageIntros[index - 1] : pageIntros[index + 1]
-        } else {
-            intro = isPrevious ? pageIntros[0] : pageIntros[pageIntros.count - 1]
+        withAnimation(.spring(response: 0.8, dampingFraction: 0.8, blendDuration: 0)) {
+            hideWholeView = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if let index = pageIntros.firstIndex(of: intro), (isPrevious ? index != 0 : index != pageIntros.count - 1) {
+                intro = isPrevious ? pageIntros[index - 1] : pageIntros[index + 1]
+            } else {
+                intro = isPrevious ? pageIntros[0] : pageIntros[pageIntros.count - 1]
+            }
+            /// Re-Animating as Split Page
+            hideWholeView = false
+            showView = false
+            
+            withAnimation(.spring(response: 0.8, dampingFraction: 0.8, blendDuration: 0)) {
+                showView = true
+            }
         }
     }
     
