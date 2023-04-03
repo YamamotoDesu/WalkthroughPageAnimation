@@ -7,7 +7,7 @@ https://www.youtube.com/watch?v=9Ztm5ePwY4k&list=TLGGql6YhFJnsjowMjA0MjAyMw
 <img width="300" alt="スクリーンショット 2023-04-03 10 09 49" src="https://user-images.githubusercontent.com/47273077/229390425-cfb91bd4-fe91-41bd-b442-302a3b88f9b2.gif">
 
 PageIntro.swift
-```swfit
+```swift
 import SwiftUI
 
 /// Page Intro Model
