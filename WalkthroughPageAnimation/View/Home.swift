@@ -121,6 +121,8 @@ struct IntroView<ActionView: View>: View {
                     }
                 } else {
                     actionView
+                        .offset(y: showView ? 0 : size.height / 2)
+                        .opacity(showView ? 1 : 0)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -144,6 +146,11 @@ struct IntroView<ActionView: View>: View {
                         .contentShape(Rectangle())
                 }
                 .padding(10)
+                /// Animating Back Button
+                /// Comes From Top When Active
+                .offset(y: showView ? 0 : -200)
+                /// Hides by Going back to Top When In Active
+                .offset(y: hideWholeView ? -200 : 0)
             }
         }
         .onAppear {
