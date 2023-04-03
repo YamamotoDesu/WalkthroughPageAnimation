@@ -119,14 +119,30 @@ struct IntroView<ActionView: View>: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
+        /// Back Button
+        .overlay(alignment: .topLeading) {
+            /// Hiding it for Very First Page, Since there is no previous page present
+            if intro != pageIntros.first {
+                Button {
+                    changeIntro(true)
+                } label : {
+                    Image(systemName: "chevron.left")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                        .contentShape(Rectangle())
+                }
+                .padding(10)
+            }
+        }
     }
     
     /// Updating Page Intro's
-    func changeIntro() {
-        if let index = pageIntros.firstIndex(of: intro), index != pageIntros.count - 1 {
-            intro = pageIntros[index + 1]
+    func changeIntro(_ isPrevious: Bool = false) {
+        if let index = pageIntros.firstIndex(of: intro), (isPrevious ? index != 0 : index != pageIntros.count - 1) {
+            intro = isPrevious ? pageIntros[index - 1] : pageIntros[index + 1]
         } else {
-            intro = pageIntros[pageIntros.count - 1]
+            intro = isPrevious ? pageIntros[0] : pageIntros[pageIntros.count - 1]
         }
     }
     
