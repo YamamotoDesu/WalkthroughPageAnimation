@@ -63,6 +63,8 @@ struct IntroView<ActionView: View>: View {
         self.actionView = actionView()
     }
     
+    /// Animation Properties
+    @State private var showView: Bool = false
     var body: some View {
         VStack {
             /// Image View
@@ -75,6 +77,9 @@ struct IntroView<ActionView: View>: View {
                     .padding(15)
                     .frame(width: size.width, height: size.height)
             }
+            /// Moving Up
+            .offset(y: showView ? 0 : -size.height / 2)
+            .opacity(showView ? 1 : 0)
             
             /// Title & Action's
             VStack(alignment: .leading, spacing: 10) {
@@ -118,6 +123,9 @@ struct IntroView<ActionView: View>: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            /// Moving Down
+            .offset(y: showView ? 0 : size.height / 2)
+            .opacity(showView ? 1 : 0)
         }
         /// Back Button
         .overlay(alignment: .topLeading) {
@@ -133,6 +141,11 @@ struct IntroView<ActionView: View>: View {
                         .contentShape(Rectangle())
                 }
                 .padding(10)
+            }
+        }
+        .onAppear {
+            withAnimation(.spring(response: 0.8, dampingFraction: 0.8, blendDuration: 0).delay(0.1)) {
+                showView = true
             }
         }
     }
