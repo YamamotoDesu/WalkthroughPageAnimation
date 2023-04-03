@@ -309,7 +309,7 @@ struct IntroView<ActionView: View>: View {
 }
 ```
 
-## [Configure Last page]()
+## [Configure Last page](https://github.com/YamamotoDesu/WalkthroughPageAnimation/commit/3f055ac9bc6f56d7d169c08f782b4f578509979c)
 <img width="300" alt="スクリーンショット 2023-04-03 10 44 24" src="https://user-images.githubusercontent.com/47273077/229393368-e555cdc1-bc35-4b77-b629-9eb42d7ccb15.png">
 
 Home.swift
