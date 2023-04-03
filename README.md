@@ -3,7 +3,7 @@ SwiftUI App Intro Animation's - Walkthrough Page Animation's - OnBoarding Screen
 
 https://www.youtube.com/watch?v=9Ztm5ePwY4k&list=TLGGql6YhFJnsjowMjA0MjAyMw
 
-<img width="400" alt="スクリーンショット 2023-04-03 10 09 49" src="https://github.com/YamamotoDesu/WalkthroughPageAnimation/blob/main/Simulator%20Screen%20Recording%20-%20iPhone%2014%20Pro%20-%202023-04-03%20at%2012.00.34.gif">
+<img width="350" alt="スクリーンショット 2023-04-03 10 09 49" src="https://github.com/YamamotoDesu/WalkthroughPageAnimation/blob/main/Simulator%20Screen%20Recording%20-%20iPhone%2014%20Pro%20-%202023-04-03%20at%2012.00.34.gif">
 
 
 ## Set up Project
