@@ -622,3 +622,7 @@ Home.swift
                 .offset(y: hideWholeView ? -200 : 0)
             }
  ```
+
+## Issue
+We don't want to resize the view...
+<img width="300" alt="スクリーンショット_2023_04_03_11_42" src="https://user-images.githubusercontent.com/47273077/229399490-25fa960b-aea1-4c98-9e40-b71cf9437759.png">
