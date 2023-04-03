@@ -14,6 +14,7 @@
 		7BB862E829DA4CDB00111F61 /* PageIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB862E729DA4CDA00111F61 /* PageIntro.swift */; };
 		7BB862EA29DA4D5200111F61 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB862E929DA4D5200111F61 /* Home.swift */; };
 		7BB862EC29DA547F00111F61 /* CustomIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB862EB29DA547F00111F61 /* CustomIndicatorView.swift */; };
+		7BB862EE29DA611000111F61 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB862ED29DA611000111F61 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		7BB862E729DA4CDA00111F61 /* PageIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIntro.swift; sourceTree = "<group>"; };
 		7BB862E929DA4D5200111F61 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		7BB862EB29DA547F00111F61 /* CustomIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIndicatorView.swift; sourceTree = "<group>"; };
+		7BB862ED29DA611000111F61 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				7BB862E929DA4D5200111F61 /* Home.swift */,
 				7BB862EB29DA547F00111F61 /* CustomIndicatorView.swift */,
+				7BB862ED29DA611000111F61 /* CustomTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			files = (
 				7BB862D829DA4C2700111F61 /* ContentView.swift in Sources */,
 				7BB862D629DA4C2700111F61 /* WalkthroughPageAnimationApp.swift in Sources */,
+				7BB862EE29DA611000111F61 /* CustomTextField.swift in Sources */,
 				7BB862EC29DA547F00111F61 /* CustomIndicatorView.swift in Sources */,
 				7BB862EA29DA4D5200111F61 /* Home.swift in Sources */,
 				7BB862E829DA4CDB00111F61 /* PageIntro.swift in Sources */,

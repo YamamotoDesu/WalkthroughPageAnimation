@@ -10,11 +10,19 @@ import SwiftUI
 struct Home: View {
     /// View Properties
     @State private var activeIntro: PageIntro = pageIntros[0]
+    @State private var emailID: String = ""
+    @State private var password: String = ""
     var body: some View {
         GeometryReader {
             let size = $0.size
             
-            IntroView(intro: $activeIntro, size: size)
+            IntroView(intro: $activeIntro, size: size) {
+                /// User Login/Signup View
+                VStack(spacing: 10) {
+                    /// Custom TextField
+                    CustomTextField(text: $emailID, hint: "Email Address", leadingIcon: Image(systemName: "envelope"))
+                }
+            }
         }
         .padding(15)
     }
@@ -27,9 +35,16 @@ struct Home_Previews: PreviewProvider {
 }
 
 /// Intro View
-struct IntroView: View {
+struct IntroView<ActionView: View>: View {
     @Binding var intro: PageIntro
     var size: CGSize
+    var actionView: ActionView
+    
+    init(intro: Binding<PageIntro>, size: CGSize, @ViewBuilder actionView: @escaping () -> ActionView) {
+        self._intro = intro
+        self.size = size
+        self.actionView = actionView()
+    }
     
     var body: some View {
         VStack {
@@ -82,7 +97,7 @@ struct IntroView: View {
                         .frame(maxWidth: .infinity)
                     }
                 } else {
-                    
+                    actionView
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
