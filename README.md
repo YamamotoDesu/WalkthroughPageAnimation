@@ -309,3 +309,46 @@ struct IntroView<ActionView: View>: View {
 }
 ```
 
+## [Configure Last page]()
+<img width="300" alt="スクリーンショット 2023-04-03 10 44 24" src="https://user-images.githubusercontent.com/47273077/229393368-e555cdc1-bc35-4b77-b629-9eb42d7ccb15.png">
+
+Home.swift
+```swift
+struct Home: View {
+    /// View Properties
+    @State private var activeIntro: PageIntro = pageIntros[0]
+    @State private var emailID: String = ""
+    @State private var password: String = ""
+    var body: some View {
+        GeometryReader {
+            let size = $0.size
+            
+            IntroView(intro: $activeIntro, size: size) {
+                /// User Login/Signup View
+                VStack(spacing: 10) {
+                    /// Custom TextField
+                    CustomTextField(text: $emailID, hint: "Email Address", leadingIcon: Image(systemName: "envelope"))
+                    CustomTextField(text: $emailID, hint: "Password", leadingIcon: Image(systemName: "lock"), isPassword: true)
+                    
+                    Spacer(minLength: 10)
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Continus")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 15)
+                            .frame(maxWidth: .infinity)
+                            .background {
+                                Capsule()
+                                    .fill(.black)
+                            }
+                    }
+                }
+            }
+        }
+        .padding(15)
+    }
+}
+```
